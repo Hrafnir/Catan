@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Settlers</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="game-container">
+
+        <header id="game-header">
+            <h1>Web Settlers</h1>
+            <div id="game-status">Laster inn...</div>
+        </header>
+
+        <main id="main-content">
+            <div id="board-area">
+                <!-- Spillbrettet genereres her av JavaScript (f.eks. med SVG) -->
+                <svg id="game-board" width="600" height="600" viewbox="-100 -100 200 200">
+                    <!-- Hexagons, tall, veier, bygninger etc. legges inn her -->
+                </svg>
+                <div id="robber-piece"></div> <!-- Eget element for røveren? -->
+            </div>
+
+            <aside id="player-interface">
+                <div id="player-info-area">
+                    <!-- Info om hver spiller genereres her -->
+                    </div>
+
+                <div id="controls-area">
+                    <h3>Din tur!</h3>
+                    <div id="dice-display">
+                        <img id="dice1" src="images/dice-1.png" alt="Terning 1">
+                        <img id="dice2" src="images/dice-1.png" alt="Terning 2">
+                    </div>
+                    <button id="btn-roll-dice">Kast terning</button>
+                    <div id="action-buttons">
+                        <button id="btn-build-road" disabled>Bygg Vei</button>
+                        <button id="btn-build-settlement" disabled>Bygg Bosetning</button>
+                        <button id="btn-build-city" disabled>Bygg By</button>
+                        <button id="btn-buy-devcard" disabled>Kjøp Utviklingskort</button>
+                        <button id="btn-trade" disabled>Handel</button>
+                        <button id="btn-play-devcard" disabled>Spill Utviklingskort</button>
+                        <button id="btn-end-turn" disabled>Avslutt Tur</button>
+                    </div>
+                </div>
+
+                <div id="log-area">
+                    <h4>Spill-logg</h4>
+                    <ul id="game-log">
+                        <!-- Hendelser i spillet listes her -->
+                    </ul>
+                </div>
+            </aside>
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
