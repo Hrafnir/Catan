@@ -1,1 +1,166 @@
+/* Grunnleggende reset og oppsett */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
 
+#game-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-width: 1200px; /* Juster etter behov */
+    width: 95%;
+}
+
+#game-header {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+#main-content {
+    display: flex;
+    gap: 20px;
+}
+
+/* --- Brettområde --- */
+#board-area {
+    flex-grow: 1; /* Tar mesteparten av plassen */
+    position: relative; /* For absolutt posisjonering inni */
+}
+
+#game-board {
+    display: block; /* Fjerner ekstra mellomrom under SVG */
+    margin: auto; /* Sentrerer SVG hvis bredden er satt */
+    max-width: 100%;
+    height: auto;
+}
+
+/* Eksempel på styling av hexagon (kan gjøres mer spesifikt i JS) */
+.hexagon {
+    stroke: #333;
+    stroke-width: 0.5;
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+.hexagon:hover {
+    filter: brightness(1.1);
+}
+/* Legg til klasser for ulike terrengtyper for bakgrunnsbilder */
+.hexagon.terrain-forest { fill: url(#img-forest); } /* Må definere pattern i SVG */
+.hexagon.terrain-hills { fill: url(#img-hills); }
+/* ...osv for alle terreng */
+
+.number-token {
+    font-size: 10px;
+    font-weight: bold;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    fill: black;
+    pointer-events: none; /* Gjør at klikk går gjennom til hexagonen */
+}
+.number-token.red-number {
+    fill: red;
+}
+
+.settlement, .city, .road { /* Placeholder for brikker */
+    pointer-events: none;
+}
+
+/* --- Spillergrensesnitt --- */
+#player-interface {
+    width: 300px; /* Juster bredden */
+    flex-shrink: 0; /* Forhindrer at den krymper for mye */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#player-info-area .player-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+#player-info-area .player-card.active-player {
+    background-color: #e0ffe0; /* Fremhev aktiv spiller */
+    border-color: green;
+}
+
+.player-resources img { /* Små ikoner for ressurser */
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 3px;
+}
+
+#controls-area button {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    background-color: #eee;
+}
+#controls-area button:disabled {
+    cursor: not-allowed;
+    background-color: #ddd;
+    color: #888;
+}
+#controls-area button:hover:not(:disabled) {
+    background-color: #d8d8d8;
+}
+
+#dice-display {
+    text-align: center;
+    margin-bottom: 15px;
+}
+#dice-display img {
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#log-area {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 10px;
+    height: 150px; /* Juster */
+    overflow-y: auto;
+    font-size: 0.9em;
+}
+#game-log {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#game-log li {
+    margin-bottom: 4px;
+    border-bottom: 1px dotted #eee;
+    padding-bottom: 2px;
+}
+
+/* --- Hjelpeklasser (styres av JS) --- */
+.hidden {
+    display: none;
+}
+.clickable {
+    cursor: pointer;
+}
+.highlight-build-spot { /* For å vise gyldige byggeplasser */
+    stroke: gold !important;
+    stroke-width: 2px !important;
+    fill: rgba(255, 215, 0, 0.3) !important;
+}
